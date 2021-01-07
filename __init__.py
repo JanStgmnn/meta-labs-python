@@ -36,3 +36,12 @@ def update_license(api_key, license_key, metadata):
                      headers=headers)
 
     return r.data.decode('utf-8')
+
+
+def auth_plan(api_key, license_key, plan):
+    l = get_license(api_key, license_key)
+
+    if(l.json()["plan"]["name"].lower() == plan.lower()):
+        return True
+    else:
+        return False
