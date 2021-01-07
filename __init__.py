@@ -38,10 +38,21 @@ def update_license(api_key, license_key, metadata):
     return r.data.decode('utf-8')
 
 
-def auth_plan(api_key, license_key, plan):
-    l = get_license(api_key, license_key)
+def get_plan_type(license_str):
 
-    if(l.json()["plan"]["name"].lower() == plan.lower()):
-        return True
-    else:
-        return False
+    return license_str.json()["plan"]["name"]
+
+
+def get_discord_tag(license_str):
+
+    return license_str.json()["member"]["discord"]["tag"]
+
+
+def get_discord_avatar_hash(license_str):
+
+    return license_str.json()["member"]["discord"]["avatar"]
+
+
+def get_discord_id(license_str):
+
+    return license_str.json()["member"]["discord"]["id"]
